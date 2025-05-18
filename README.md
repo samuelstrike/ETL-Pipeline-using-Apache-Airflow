@@ -1,4 +1,4 @@
-# 🌍 NASA EONET ETL Pipeline
+# 🚀 ETL Pipeline for Real-Time Global Event Tracking using NASA API & Apache Airflow
 
 This repository contains a complete ETL pipeline that fetches natural event data from the [NASA EONET API](https://eonet.gsfc.nasa.gov/api/v3/events) and loads it into a PostgreSQL database using **Apache Airflow** and **PostgresHook**.
 
@@ -11,17 +11,7 @@ This ETL pipeline demonstrates:
 - Automating and orchestrating the pipeline with Apache Airflow
 - Avoiding temporary JSON storage and directly using SQL operators and hooks
 
-> 🔁 The EONET API is dynamic and continuously updated, so this pipeline is designed to ingest all available events each run and gracefully upsert data into the database.
-
----
-
-## 🛠️ Tools & Technologies
-
-- **Apache Airflow** – Orchestration tool
-- **PostgreSQL** – Destination data warehouse
-- **Python** – Core language used for data transformation
-- **PostgresHook & SQLExecuteQueryOperator** – Airflow providers for database access
-- **Docker** – For local environment setup
+> 🔁 The EONET API provides constantly evolving data on natural events, and this pipeline—scheduled to run daily—ensures that each execution captures the latest information by seamlessly inserting new records and updating existing ones in the PostgreSQL database.
 
 ---
 
@@ -30,6 +20,22 @@ This ETL pipeline demonstrates:
 ![Architecture Diagram](images/elt_architecture.png )
 
 ---
+
+## 🚀 How the Pipeline Works
+
+1. **Airflow DAG** (`nasa_eonet_etl.py`) runs on a schedule.
+2. It **fetches live JSON data** from NASA EONET.
+3. **Transforms and prepares** the data using Python for consistency and reliability.
+4. Loads the processed data into PostgreSQL using **PostgresHook** for efficient database operations.
+5. Use PGAdmin to visually inspect and validate the ingested data in the PostgreSQL database.
+
+## 🛠️ Tools & Technologies
+
+- **Apache Airflow** – Orchestration tool
+- **PostgreSQL** – Destination data warehouse
+- **Python** – Core language used for data transformation
+- **PostgresHook & SQLExecuteQueryOperator** – Airflow providers for database access
+- **Docker** – For local environment setup
 
 
 ## 🐳 Docker-Based Setup
@@ -81,10 +87,3 @@ CREATE TABLE IF NOT EXISTS nasa_events (
 );
 ```
 
-## 🚀 How the Pipeline Works
-
-1. **Airflow DAG** (`nasa_eonet_etl.py`) runs on a schedule.
-2. It **fetches live JSON data** from NASA EONET.
-3. Cleans/transforms the data in Python.
-4. Inserts records into PostgreSQL using **PostgresHook**.
-5. PGAdmin to check the data in the database.
