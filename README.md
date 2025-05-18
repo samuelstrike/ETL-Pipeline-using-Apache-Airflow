@@ -27,7 +27,7 @@ This ETL pipeline demonstrates:
 
 ## 📐 Architecture
 
-![Architecture Diagram](images/elt_architecture.png
+![Architecture Diagram](images/elt_architecture.png )
 
 ---
 
