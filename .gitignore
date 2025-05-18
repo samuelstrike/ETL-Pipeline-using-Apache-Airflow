@@ -85,7 +85,6 @@ ENV/
 env.bak/
 venv.bak/
 
-images/
 config/
 
 # ignore files folder and process_employees.py
