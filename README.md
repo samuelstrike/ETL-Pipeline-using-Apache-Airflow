@@ -32,7 +32,7 @@ This ETL pipeline demonstrates:
 ## 🛠️ Tools & Technologies
 
 - **Apache Airflow** – Orchestration tool
-- **PostgreSQL** – Destination data warehouse
+- **PostgreSQL** – Destination database
 - **Python** – Core language used for data transformation
 - **PostgresHook & SQLExecuteQueryOperator** – Airflow providers for database access
 - **Docker** – For local environment setup
