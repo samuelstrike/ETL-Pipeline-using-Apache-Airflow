@@ -31,6 +31,41 @@ This ETL pipeline demonstrates:
 
 ---
 
+
+## 🐳 Docker-Based Setup
+
+Follow these steps to run the project using Docker Compose.
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/samuelstrike/ETL-Pipeline-using-Apache-Airflow.git
+cd ETL-Pipeline-using-Apache-Airflow
+```
+
+### 2. Start the Containers
+
+```bash
+docker compose up -d
+```
+
+This will spin up:
+
+- Airflow Webserver
+- Airflow Scheduler
+- PostgreSQL
+- (Optional) PgAdmin
+
+### 3. Access Services
+
+| Service           | URL/Host                      | Credentials                      |
+|------------------|-------------------------------|----------------------------------|
+| **Airflow UI**    | http://localhost:8080         | Username: `airflow`, Password: `airflow` |
+| **PostgreSQL**    | localhost:5432                | User: `airflow`, Password: `airflow`     |
+| **PgAdmin (opt)** | http://localhost:5050         | Email: `admin@admin.com`, Password: `admin` |
+
+---
+
 ## 🧱 Database Schema
 
 ```sql
@@ -44,4 +79,12 @@ CREATE TABLE IF NOT EXISTS nasa_events (
     coordinates TEXT,
     date TIMESTAMP
 );
+```
 
+## 🚀 How the Pipeline Works
+
+1. **Airflow DAG** (`nasa_eonet_etl.py`) runs on a schedule.
+2. It **fetches live JSON data** from NASA EONET.
+3. Cleans/transforms the data in Python.
+4. Inserts records into PostgreSQL using **PostgresHook**.
+5. PGAdmin to check the data in the database.
